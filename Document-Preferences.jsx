@@ -21,9 +21,9 @@ function main() {
     alert("No documents are open.");
   } else {
      if (d.viewPreferences.horizontalMeasurementUnits == inch && d.viewPreferences.verticalMeasurementUnits == inch) {
-      valPrefs(pt, 9, ["864 pt", "72 pt"], ".25pt", "0.25pt" , "1pt", 1);
+      valPrefs(pt, 9, ["864 pt", "72 pt"], ".25pt", "1pt" , "10pt", 10);
     } else if (d.viewPreferences.horizontalMeasurementUnits == pt && d.viewPreferences.verticalMeasurementUnits == pt) {
-      valPrefs(inch, 0.125, ["12 in", "1 in"], ".25pt", "0.25pt", "1pt", 1 );
+      valPrefs(inch, 0.125, ["12 in", "1 in"], ".25pt", "1pt", "10pt", 10);
     }
     docPrefs();
     textThreads();
