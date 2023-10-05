@@ -82,13 +82,13 @@ function docPrefs() {
 
 function textThreads(){
   // show Text Threads
-  app.translateKeyString("$ID/Show Text Threads");
-  app.translateKeyString("$ID/Hide Text Threads");
+  // app.translateKeyString("$ID/Show Text Threads");
+  // app.translateKeyString("$ID/Hide Text Threads");
   // failed test
-  $.writeln(app.menuActions.itemByID(24332).name);
+  // $.writeln(app.menuActions.itemByID(24332).name);
   app.menuActions.itemByID(24332).invoke();
-  $.writeln(app.menuActions.itemByID(24332).name);
+  // $.writeln(app.menuActions.itemByID(24332).name);
   // app.activate()
   // output should change after invoke
-  $.writeln(app.activeDocument.undoHistory.length);
+  // $.writeln(app.activeDocument.undoHistory.length);
 }
