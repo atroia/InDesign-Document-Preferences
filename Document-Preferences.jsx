@@ -1,7 +1,7 @@
 /* --------------------------------------
 Doc Prefs
 by Aaron Troia (@atroia)
-Modified Date: 8/21/23
+Modified Date: 11/29/23
 
 Description: 
 Update file preferences for files coming in from other designers.
@@ -25,6 +25,7 @@ function main() {
     } else if (d.viewPreferences.horizontalMeasurementUnits == pt && d.viewPreferences.verticalMeasurementUnits == pt) {
       valPrefs(inch, 0.125, ["12 in", "1 in"], ".25pt", "1pt", "10pt", 10);
     }
+    wordImport();
     docPrefs();
     textThreads();
   }
@@ -43,7 +44,7 @@ function valPrefs(units, bleed, pbMargin, cki, bski, lki, kki) {
   d.viewPreferences.cursorKeyIncrement = cki; // Range depends on the measurement unit. For points: 0.001 to 100; picas: 0p0.001 to 8p4; mm: 0 to 35.278; cm: 0 to 3.5278; inches: 0 to 1.3889; ciceros: 0c0.001 to 7c9.839)
   d.textPreferences.baselineShiftKeyIncrement = bski; // .001-100
   d.textPreferences.leadingKeyIncrement = lki; // .001-100
-	d.textPreferences.kerningKeyIncrement = kki; // 1-100
+  d.textPreferences.kerningKeyIncrement = kki; // 1-100
 }
 
 function docPrefs() {
@@ -80,15 +81,12 @@ function docPrefs() {
   d.documentPreferences.allowPageShuffle = true;
 }
 
+function wordImport(){
+  if (app.wordRTFImportPreferences.importAsStaticEndnotes == false){
+    app.wordRTFImportPreferences.importAsStaticEndnotes = true;
+  } 
+}
+
 function textThreads(){
-  // show Text Threads
-  // app.translateKeyString("$ID/Show Text Threads");
-  // app.translateKeyString("$ID/Hide Text Threads");
-  // failed test
-  // $.writeln(app.menuActions.itemByID(24332).name);
   app.menuActions.itemByID(24332).invoke();
-  // $.writeln(app.menuActions.itemByID(24332).name);
-  // app.activate()
-  // output should change after invoke
-  // $.writeln(app.activeDocument.undoHistory.length);
 }
