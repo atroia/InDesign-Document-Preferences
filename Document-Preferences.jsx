@@ -20,11 +20,16 @@ function main() {
   if (app.documents.length == 0) {
     alert("No documents are open.");
   } else {
-     if (d.viewPreferences.horizontalMeasurementUnits == inch && d.viewPreferences.verticalMeasurementUnits == inch) {
-      valPrefs(pt, 9, ["864 pt", "72 pt"], ".25pt", "1pt" , "10pt", 10);
-    } else if (d.viewPreferences.horizontalMeasurementUnits == pt && d.viewPreferences.verticalMeasurementUnits == pt) {
-      valPrefs(inch, 0.125, ["12 in", "1 in"], ".25pt", "1pt", "10pt", 10);
+    if (
+      d.viewPreferences.horizontalMeasurementUnits != pt || 
+      d.viewPreferences.horizontalMeasurementUnits != inch &&
+      d.viewPreferences.verticalMeasurementUnits != pt ||
+      d.viewPreferences.verticalMeasurementUnits != inch
+    ) {
+        d.viewPreferences.horizontalMeasurementUnits = pt;
+        d.viewPreferences.verticalMeasurementUnits = pt;
     }
+    pasteboard();
     wordImport();
     docPrefs();
     textThreads();
@@ -45,6 +50,14 @@ function valPrefs(units, bleed, pbMargin, cki, bski, lki, kki) {
   d.textPreferences.baselineShiftKeyIncrement = bski; // .001-100
   d.textPreferences.leadingKeyIncrement = lki; // .001-100
   d.textPreferences.kerningKeyIncrement = kki; // 1-100
+}
+
+function pasteboard(){
+    if (d.viewPreferences.horizontalMeasurementUnits == inch && d.viewPreferences.verticalMeasurementUnits == inch) {
+      valPrefs(pt, 9, ["864 pt", "72 pt"], ".25pt", "1pt" , "2pt", 10);
+    } else if (d.viewPreferences.horizontalMeasurementUnits == pt && d.viewPreferences.verticalMeasurementUnits == pt) {
+      valPrefs(inch, 0.125, ["12 in", "1 in"], ".25pt", "1pt", "2pt", 10);
+    }
 }
 
 function docPrefs() {
@@ -82,9 +95,12 @@ function docPrefs() {
 }
 
 function wordImport(){
-  if (app.wordRTFImportPreferences.importAsStaticEndnotes == false){
+  if (app.wordRTFImportPreferences.importAsStaticEndnotes === false){
     app.wordRTFImportPreferences.importAsStaticEndnotes = true;
-  } 
+    alert("Word Import Prefrences have been updated.");
+  } else if (app.wordRTFImportPreferences.importAsStaticEndnotes === true) {
+    alert("Word Import Prefrences are already set.");
+  }
 }
 
 function textThreads(){
