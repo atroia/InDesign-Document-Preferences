@@ -1,11 +1,14 @@
 /* --------------------------------------
 Doc Prefs
 by Aaron Troia (@atroia)
-Modified Date: 11/29/23
+Modified Date: 6/2/25
 
 Description: 
 Update file preferences for files coming in from other designers.
 
+Updates
+- added word import static endnotes function
+- updated viewPreferences
 -------------------------------------- */
 
 #targetengine "myprefs"
